@@ -1,0 +1,15 @@
+{
+  "name": "pterodactyl-vscode-glass",
+  "version": "1.0.0",
+  "description": "Pterodactyl theme: Glassmorphism + VS Code layout. Auto-install via SSH.",
+  "main": "install.js",
+  "scripts": {
+    "install-theme": "node install.js",
+    "uninstall-theme": "node install.js uninstall",
+   "start": "node install.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ssh2": "^1.15.0"
+  }
+}

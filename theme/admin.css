@@ -1,0 +1,10 @@
+/* AdminLTE-safe visual overrides. No admin JavaScript is injected. */
+body:has(.main-sidebar){background:#101722!important;color:#e8edf4!important;font-family:Segoe UI,system-ui,sans-serif!important}
+body:has(.main-sidebar) .content-wrapper,body:has(.main-sidebar) .main-sidebar,body:has(.main-sidebar) .main-header,body:has(.main-sidebar) .box,body:has(.main-sidebar) .card{background:rgba(18,26,38,.96)!important;color:#e8edf4!important;border-color:rgba(255,255,255,.12)!important}
+body:has(.main-sidebar) .main-sidebar .brand-link{display:flex;align-items:center;gap:9px;padding-left:12px!important;color:#e8edf4!important}
+body:has(.main-sidebar) .main-sidebar .brand-link img,body:has(.main-sidebar) .main-sidebar .brand-link .brand-image{width:30px!important;height:30px!important;object-fit:cover!important;border-radius:50%!important;float:none!important;margin:0!important;background-image:url('/themes/onepay-id/assets/logo-48.webp')!important;background-size:cover!important}
+body:has(.main-sidebar) .main-sidebar .brand-link .brand-text{font-size:0!important}body:has(.main-sidebar) .main-sidebar .brand-link .brand-text:after{content:'Onepay-ID';font-size:15px;font-weight:600;color:#e8edf4}
+body:has(.main-sidebar) .main-sidebar .sidebar a{color:#d6e0ec!important}body:has(.main-sidebar) .main-sidebar .sidebar a:hover{background:rgba(63,182,255,.12)!important;color:#fff!important}
+body:has(.main-sidebar) .btn-primary,body:has(.main-sidebar) .bg-primary{background-color:#168ac4!important;border-color:#168ac4!important}
+body:has(.main-sidebar) input,body:has(.main-sidebar) select,body:has(.main-sidebar) textarea{background:#101925!important;color:#e8edf4!important;border-color:rgba(255,255,255,.15)!important}
+body:has(.main-sidebar) a{color:#72c9ff}body:has(.main-sidebar) .content-header h1{color:#e8edf4}

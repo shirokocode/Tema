@@ -1,0 +1,520 @@
+:root{--op-accent:#3fb6ff;--op-accent-2:#1fa7e6;--op-bg:rgba(17,22,31,.84);--op-panel:rgba(22,29,40,.72);--op-panel-2:rgba(27,36,49,.86);--op-text:#e8edf4;--op-muted:#aab5c4;--op-border:rgba(255,255,255,.12);--op-hover:rgba(63,182,255,.12);--op-radius:4px;--op-space:8px;--op-blur:blur(16px) saturate(135%);--op-font:Segoe UI,system-ui,-apple-system,sans-serif;--op-mono:"Cascadia Code","JetBrains Mono",Consolas,monospace;--op-title-h:38px;--op-activity-w:58px;--op-sidebar-w:260px;--op-status-h:24px;color-scheme:dark}
+*{box-sizing:border-box}html,body{min-height:100%;}body.onepay-id{margin:0!important;background:#151c28 url('/themes/onepay-id/bg.webp') center/cover fixed no-repeat!important;color:var(--op-text)!important;font-family:var(--op-font)!important}body.onepay-id:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(135deg,rgba(7,14,25,.7),rgba(12,22,34,.72))}body.onepay-id #app{position:relative;z-index:1;padding:18px 22px 32px;min-height:calc(100vh - 62px);background:rgba(14,20,29,.26)!important;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}body.onepay-id #app input,body.onepay-id #app textarea,body.onepay-id #app select{background:rgba(7,12,20,.66)!important;color:var(--op-text)!important;border:1px solid var(--op-border)!important;border-radius:3px!important}body.onepay-id #app button{border-radius:3px!important}body.onepay-id #app a{color:#72c9ff}body.onepay-id #app h1,body.onepay-id #app h2,body.onepay-id #app h3{letter-spacing:.1px;font-weight:600}body.onepay-id :focus-visible{outline:2px solid var(--op-accent)!important;outline-offset:2px}
+#op-titlebar,#op-activity,#op-explorer,#op-tabs,#op-breadcrumbs,#op-statusbar,#op-palette,#op-workbench{font-family:var(--op-font);color:var(--op-text);font-size:13px}#op-titlebar{position:fixed;z-index:1200;inset:0 0 auto;height:var(--op-title-h);display:flex;align-items:center;gap:12px;padding:0 10px;background:rgba(13,20,30,.88);border-bottom:1px solid var(--op-border);-webkit-backdrop-filter:var(--op-blur);backdrop-filter:var(--op-blur)}.op-brand{display:flex;align-items:center;gap:8px;min-width:190px}.op-brand img{width:25px;height:25px;border-radius:50%;object-fit:cover;border:1px solid rgba(63,182,255,.6)}.op-brand strong{font-size:13px;letter-spacing:.2px}.op-title-center{flex:1;text-align:center;color:#c6d1df;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.op-title-actions{display:flex;gap:5px}.op-title-actions button,.op-mobile-menu{background:transparent;border:1px solid transparent;color:var(--op-muted);padding:5px 8px;min-height:28px;cursor:pointer}.op-title-actions button:hover,.op-mobile-menu:hover{background:var(--op-hover);color:var(--op-text);border-color:var(--op-border)}.op-mobile-menu{display:none}
+#op-activity{position:fixed;z-index:1100;top:var(--op-title-h);bottom:var(--op-status-h);left:0;width:var(--op-activity-w);display:flex;flex-direction:column;align-items:stretch;background:rgba(12,18,27,.86);border-right:1px solid var(--op-border);-webkit-backdrop-filter:var(--op-blur);backdrop-filter:var(--op-blur)}.op-nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:55px;width:100%;border:0;border-left:2px solid transparent;background:transparent;color:#b7c3d2;cursor:pointer}.op-nav-item>span{font-size:22px;line-height:22px}.op-nav-item small{font-size:9px;max-width:54px;overflow:hidden;text-overflow:ellipsis}.op-nav-item:hover{color:white;background:var(--op-hover)}.op-nav-item.active{color:var(--op-accent);border-left-color:var(--op-accent);background:rgba(63,182,255,.07)}.op-nav-bottom{margin-top:auto;border-top:1px solid var(--op-border)}
+#op-explorer{position:fixed;z-index:1050;top:var(--op-title-h);bottom:var(--op-status-h);left:var(--op-activity-w);width:var(--op-sidebar-w);overflow:auto;background:rgba(18,25,36,.88);border-right:1px solid var(--op-border);-webkit-backdrop-filter:var(--op-blur);backdrop-filter:var(--op-blur)}#op-explorer[hidden],#op-tabs[hidden],#op-breadcrumbs[hidden],#op-palette[hidden]{display:none!important}.op-explorer-head{height:36px;padding:0 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--op-border)}.op-explorer-head strong{font-size:11px;letter-spacing:.8px}.op-file-actions{display:flex;gap:2px}.op-file-actions button,.op-upload{border:1px solid transparent;background:transparent;color:var(--op-muted);min-width:28px;min-height:28px;cursor:pointer}.op-file-actions button:hover,.op-upload:hover{color:var(--op-accent);background:var(--op-hover)}.op-tree-path{padding:8px 10px;color:var(--op-muted);font:11px var(--op-mono);overflow-wrap:anywhere;border-bottom:1px solid var(--op-border)}.op-file-tree{padding:4px 0}.op-file-row{display:flex;align-items:center;gap:8px;width:100%;min-height:30px;padding:3px 10px 3px 14px;border:0;border-left:2px solid transparent;background:transparent;color:#d4dce7;text-align:left;cursor:pointer}.op-file-row:hover{background:var(--op-hover)}.op-file-row.active{background:rgba(63,182,255,.14);border-left-color:var(--op-accent)}.op-file-icon{width:26px;color:#74caff;font:11px var(--op-mono);flex-shrink:0}.op-file-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.op-empty{padding:12px;color:var(--op-muted)}.op-upload{margin:8px;padding:6px 10px;border:1px solid var(--op-border);width:calc(100% - 16px)}
+#op-tabs{position:fixed;z-index:1000;top:var(--op-title-h);left:calc(var(--op-activity-w) + var(--op-sidebar-w));right:0;height:34px;display:flex;overflow-x:auto;background:rgba(20,28,39,.88);border-bottom:1px solid var(--op-border)}.op-tab{display:flex;align-items:center;gap:7px;min-width:130px;max-width:220px;padding:0 10px;background:rgba(255,255,255,.015);border:0;border-right:1px solid var(--op-border);color:var(--op-muted);white-space:nowrap}.op-tab.active{background:rgba(63,182,255,.10);color:var(--op-text);border-top:1px solid var(--op-accent)}.op-tab-close{margin-left:auto;padding:2px 5px;border-radius:3px}.op-tab-close:hover{background:var(--op-hover)}#op-breadcrumbs{position:fixed;z-index:1000;top:calc(var(--op-title-h) + 34px);left:calc(var(--op-activity-w) + var(--op-sidebar-w));right:0;height:26px;display:flex;align-items:center;gap:8px;padding:0 12px;background:rgba(18,26,37,.64);border-bottom:1px solid var(--op-border);overflow:hidden}#op-breadcrumbs button{border:0;background:transparent;color:#c4d1e0;white-space:nowrap;cursor:pointer}#op-breadcrumbs button:hover{color:var(--op-accent)}
+#op-statusbar{position:fixed;z-index:1200;bottom:0;left:0;right:0;height:var(--op-status-h);display:flex;align-items:center;justify-content:space-between;padding:0 10px;background:rgba(15,91,139,.94);color:white;font-size:11px}#op-statusbar span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body.onepay-id #app{margin-left:var(--op-activity-w);margin-top:var(--op-title-h);margin-bottom:var(--op-status-h);width:calc(100% - var(--op-activity-w));min-height:calc(100vh - var(--op-title-h) - var(--op-status-h));padding:22px}body.onepay-id.op-has-explorer #app{margin-left:calc(var(--op-activity-w) + var(--op-sidebar-w));width:calc(100% - var(--op-activity-w) - var(--op-sidebar-w));padding-top:66px}body.onepay-id.op-has-explorer #op-workbench{position:fixed;z-index:10;top:calc(var(--op-title-h) + 60px);left:calc(var(--op-activity-w) + var(--op-sidebar-w));right:0;bottom:var(--op-status-h);display:flex;flex-direction:column;background:rgba(10,16,25,.46);border-top:1px solid var(--op-border)}#op-editor{display:flex;flex:1;min-height:0;flex-direction:column}.op-editor-toolbar{height:34px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 10px;border-bottom:1px solid var(--op-border);background:rgba(18,26,37,.76)}.op-active-file{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#c4d0de;font:11px var(--op-mono)}.op-editor-toolbar button,.op-workbench-actions button,.op-terminal-head button{border:1px solid var(--op-border);background:rgba(255,255,255,.04);color:var(--op-text);padding:5px 9px;min-height:30px;cursor:pointer}.op-editor-toolbar button:hover,.op-workbench-actions button:hover{border-color:var(--op-accent);background:var(--op-hover)}.op-text-editor{flex:1;width:100%;min-height:160px;resize:none;border:0!important;border-radius:0!important;outline:none;background:rgba(12,18,27,.52)!important;color:#e3eaf3!important;padding:14px 16px;font:13px/1.6 var(--op-mono);tab-size:4;white-space:pre;overflow:auto}.op-welcome,.op-error{margin:auto;padding:28px;text-align:center;color:var(--op-muted)}.op-error{color:#ffb6b6}.op-workbench-actions{position:absolute;right:12px;bottom:8px;display:flex;gap:6px;opacity:.8}#op-terminal{height:230px;min-height:120px;max-height:55vh;border-top:1px solid var(--op-border);background:rgba(8,13,20,.95);padding:10px}#op-terminal[hidden]{display:none!important}.op-terminal-head{display:flex;justify-content:space-between;align-items:center}.op-terminal-output{font:12px var(--op-mono);color:var(--op-muted)}.op-context-menu{position:fixed;z-index:3000;min-width:190px;padding:4px;background:rgba(17,25,36,.98);border:1px solid var(--op-border);box-shadow:0 10px 30px #0008}.op-context-menu button{display:block;width:100%;padding:8px;text-align:left;background:transparent;border:0;color:var(--op-text);cursor:pointer}.op-context-menu button:hover{background:var(--op-hover)}.op-image-preview{position:fixed;z-index:4000;inset:0;background:#080c12ed;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}.op-image-preview img{max-width:90vw;max-height:80vh;object-fit:contain}.op-image-preview button{padding:8px 14px}.op-toast{padding:10px 14px;background:#172537;border:1px solid var(--op-border);border-left:3px solid var(--op-accent);border-radius:3px;box-shadow:0 5px 22px #0006;color:var(--op-text);max-width:min(420px,90vw)}.op-toast-error{border-left-color:#ff7777}.op-toast-success{border-left-color:#69d7a0}#op-toasts{position:fixed;z-index:5000;right:12px;top:50px;display:grid;gap:8px}.op-palette-box{width:min(620px,92vw);margin:10vh auto 0;background:rgba(18,26,38,.98);border:1px solid var(--op-border);box-shadow:0 20px 70px #0008}.op-palette-box input{width:100%;padding:13px;border:0;border-bottom:1px solid var(--op-border);background:transparent;color:white;font:14px var(--op-font)}.op-palette-list button{display:block;width:100%;text-align:left;padding:10px 14px;background:transparent;border:0;color:var(--op-text);cursor:pointer}.op-palette-list button:hover{background:var(--op-hover)}#op-palette{position:fixed;z-index:3500;inset:0;background:#0007}
+@media(max-width:767px){:root{--op-activity-w:0px;--op-sidebar-w:min(82vw,300px);--op-title-h:44px}.op-brand{min-width:0}.op-brand strong{font-size:12px}.op-mobile-menu{display:block}.op-title-center{text-align:left;font-size:11px}.op-title-actions button{font-size:11px;padding:4px}.op-nav-open #op-activity{display:flex;top:var(--op-title-h);bottom:var(--op-status-h);width:70px}#op-explorer{left:0;width:min(82vw,300px);z-index:2200}.op-nav-open #op-explorer{left:70px}#op-activity{display:none}.op-nav-open #op-activity{display:flex}body.onepay-id #app,body.onepay-id.op-has-explorer #app{margin-left:0;width:100%;padding:14px;margin-top:var(--op-title-h)}body.onepay-id.op-has-explorer #app{padding-top:64px}#op-tabs{left:0;top:var(--op-title-h)}#op-breadcrumbs{left:0;top:calc(var(--op-title-h) + 34px)}body.onepay-id.op-has-explorer #op-workbench{left:0;top:calc(var(--op-title-h) + 60px)}#op-statusbar{font-size:10px}.op-workbench-actions{bottom:4px}.op-text-editor{font-size:12px;padding:10px}#op-terminal{height:180px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}@media(prefers-reduced-transparency:reduce){#op-titlebar,#op-activity,#op-explorer,#op-tabs,#op-breadcrumbs{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:#111a28!important}}@media(max-width:420px){.op-title-actions button:first-child{display:none}.op-brand img{width:23px;height:23px}.op-brand{gap:5px}.op-titlebar{gap:4px}}
+/* Auth routes retain the original authentication flow and use centered glass panels. */
+body.onepay-id.op-auth-page #op-activity{display:none!important}body.onepay-id.op-auth-page #app{margin-left:0!important;width:100%!important;min-height:calc(100vh - var(--op-title-h) - var(--op-status-h));display:flex;align-items:center;justify-content:center;padding:22px!important}body.onepay-id.op-auth-page #app>div{max-width:100%}body.onepay-id.op-auth-page #op-explorer{display:none!important}
+
+/* ===== v1.1: workbench di luar #app, tree explorer, terminal ===== */
+body.onepay-id.op-wb-on #app{visibility:hidden}
+body.onepay-id.op-has-explorer #op-workbench{background:rgba(12,18,28,.92);-webkit-backdrop-filter:var(--op-blur);backdrop-filter:var(--op-blur)}
+.op-tree-path{padding:6px 12px;font-size:10px;letter-spacing:.6px;color:var(--op-muted);border-bottom:1px solid var(--op-border);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.op-file-row.cwd:not(.active){background:rgba(255,255,255,.05)}
+.op-file-row .op-file-icon{min-width:22px;font-size:10px;color:var(--op-accent);text-align:center}
+.op-file-row .op-file-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.op-empty{padding:14px;color:var(--op-muted);font-size:12px}
+#op-statusbar .op-status-mid{flex:1;text-align:center;padding:0 10px}
+#op-terminal{position:fixed;z-index:1150;left:var(--op-activity-w);right:0;bottom:var(--op-status-h);height:260px;display:flex;flex-direction:column;background:rgba(8,13,20,.96);border-top:1px solid var(--op-accent);-webkit-backdrop-filter:var(--op-blur);backdrop-filter:var(--op-blur);padding:0}
+#op-terminal[hidden]{display:none!important}
+body.op-has-explorer #op-terminal{left:calc(var(--op-activity-w) + var(--op-sidebar-w))}
+.op-terminal-head{display:flex;align-items:center;gap:6px;padding:4px 8px;border-bottom:1px solid var(--op-border);flex-wrap:wrap}
+.op-term-spacer{flex:1}
+.op-term-dot{width:9px;height:9px;border-radius:50%;background:#888}
+#op-terminal[data-status=running] .op-term-dot{background:#3fcf7a}#op-terminal[data-status=starting] .op-term-dot{background:#e5c07b}#op-terminal[data-status=stopping] .op-term-dot{background:#e5c07b}
+.op-term-state{font-size:11px;color:var(--op-muted)}
+.op-terminal-head button{border:1px solid var(--op-border);background:rgba(255,255,255,.04);color:var(--op-text);padding:3px 9px;min-height:26px;cursor:pointer;font-size:12px}
+.op-terminal-head button:hover{border-color:var(--op-accent);background:var(--op-hover)}
+#op-terminal .op-terminal-output{flex:1;margin:0;padding:8px 12px;overflow:auto;font:12px/1.5 var(--op-mono);color:#d6dee9;white-space:pre-wrap;word-break:break-all}
+.op-terminal-input{display:flex;align-items:center;gap:8px;padding:4px 12px;border-top:1px solid var(--op-border);font:12px var(--op-mono)}
+.op-terminal-input input{flex:1;background:transparent!important;border:0!important;outline:0!important;color:var(--op-text)!important;font:12px var(--op-mono)!important}
+body.op-term-open.onepay-id.op-has-explorer #op-workbench{bottom:calc(var(--op-status-h) + 260px)}
+body.op-term-open.onepay-id #app{margin-bottom:calc(var(--op-status-h) + 260px)}
+@media(max-width:767px){#op-terminal{left:0!important;height:48vh}body.op-term-open.onepay-id.op-has-explorer #op-workbench{bottom:calc(var(--op-status-h) + 48vh)}.op-status-mid{display:none}}
+
+/* ===== v1.2: show/hide explorer, mode HP (compact), archive/bulk ===== */
+:root{--op-tab-h:34px;--op-crumb-h:26px}
+#op-tabs{height:var(--op-tab-h)}
+#op-breadcrumbs{top:calc(var(--op-title-h) + var(--op-tab-h));height:var(--op-crumb-h)}
+body.onepay-id.op-has-explorer #op-workbench{top:calc(var(--op-title-h) + var(--op-tab-h) + var(--op-crumb-h));left:calc(var(--op-activity-w) + var(--op-sidebar-w))}
+#op-tabs{left:calc(var(--op-activity-w) + var(--op-sidebar-w))}
+#op-breadcrumbs{left:calc(var(--op-activity-w) + var(--op-sidebar-w))}
+.op-title-explorer{display:none}
+body.op-has-explorer .op-title-explorer{display:inline-block}
+body.op-side-off{--op-sidebar-w:0px}
+body.op-side-off #op-explorer{display:none!important}
+#op-scrim{display:none;position:fixed;z-index:2100;inset:var(--op-title-h) 0 var(--op-status-h) var(--op-activity-w);background:rgba(0,0,0,.5)}
+.op-file-line{display:flex;align-items:stretch}
+.op-file-line .op-file-row{flex:1;min-width:0}
+.op-row-menu{display:none;background:transparent;border:0;color:var(--op-muted);padding:0 12px;font-size:18px;cursor:pointer}
+.op-file-line:hover .op-row-menu{display:block}
+.op-file-row.selected{background:rgba(63,182,255,.2)}
+.op-bulk{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:8px 10px;border-top:1px solid var(--op-border);position:sticky;bottom:0;background:rgba(14,21,31,.98)}
+.op-bulk span{flex:1;font-size:12px;color:var(--op-muted)}
+.op-bulk button{border:1px solid var(--op-border);background:rgba(255,255,255,.05);color:var(--op-text);padding:6px 10px;min-height:32px;cursor:pointer}
+.op-bulk button:disabled{opacity:.4}
+.op-context-menu{max-height:80vh;overflow:auto}
+.op-menu-title{padding:6px 8px;font-size:11px;color:var(--op-muted);border-bottom:1px solid var(--op-border);margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.op-context-menu button.danger{color:#ff8f8f}
+#op-activity{overflow-y:auto;overflow-x:hidden}
+
+/* compact = layar sempit, pendek (HP landscape), atau layar sentuh */
+body.op-compact{--op-activity-w:46px;--op-title-h:34px;--op-status-h:20px;--op-tab-h:32px;--op-crumb-h:0px;--op-sidebar-w:0px}
+@media(max-width:767px){body.op-compact{--op-activity-w:0px}}
+body.op-compact #op-breadcrumbs{display:none!important}
+body.op-compact .op-nav-item{min-height:44px}
+body.op-compact .op-nav-item small{display:none}
+body.op-compact .op-brand{min-width:0}
+body.op-compact .op-title-center{font-size:12px}
+body.op-compact #op-explorer{z-index:2200;width:min(86vw,320px);box-shadow:8px 0 30px #000a}
+body.op-compact.op-has-explorer:not(.op-side-off) #op-scrim{display:block}
+body.op-compact .op-file-row{min-height:42px}
+body.op-compact .op-row-menu{display:block;min-width:44px}
+body.op-compact .op-file-actions button{min-width:36px;min-height:36px;font-size:16px}
+body.op-compact .op-upload,body.op-compact .op-bulk button{min-height:40px}
+body.op-compact .op-editor-toolbar{height:30px}
+body.op-compact .op-text-editor{font-size:13px;min-height:80px;padding:8px 10px}
+body.op-compact .op-workbench-actions{display:none}
+body.op-compact #op-terminal{height:45vh}
+body.op-compact.op-term-open.onepay-id.op-has-explorer #op-workbench{bottom:calc(var(--op-status-h) + 45vh)}
+body.op-compact .op-status-mid{display:none}
+body.op-compact .op-context-menu{left:50%!important;top:50%!important;transform:translate(-50%,-50%);min-width:min(86vw,300px)}
+body.op-compact .op-context-menu button{padding:12px 10px;font-size:14px}
+body.op-compact .op-title-actions button{min-height:30px}
+body.op-compact #app{padding:12px!important}
+
+/* =====================================================================
+   v1.3.0 — Fase 1: token, glassmorphism, sistem tombol, skeleton, menu
+   Semua nilai di bawah memakai token --op-*. Dark theme saja.
+   ===================================================================== */
+:root{
+  /* skala spacing 4/8/12/16/24 */
+  --op-sp-1:4px;--op-sp-2:8px;--op-sp-3:12px;--op-sp-4:16px;--op-sp-5:24px;
+  /* skala radius */
+  --op-r-sm:8px;--op-r-md:10px;--op-r-lg:14px;--op-r-pill:999px;--op-radius:var(--op-r-sm);
+  /* durasi + easing */
+  --op-dur-fast:150ms;--op-dur:180ms;--op-dur-menu:140ms;--op-dur-slow:240ms;--op-ease:cubic-bezier(.2,.8,.2,1);
+  /* warna semantik */
+  --op-accent-glow:rgba(63,182,255,.38);--op-violet:#7c3aed;--op-violet-2:#b026ff;--op-cyan:#00e5ff;--op-magenta:#ff2e9a;--op-navy:#1c4f9c;
+  --op-danger:#ff7a8a;--op-success:#4fe0a0;--op-warn:#f0c860;
+  --op-text-strong:#f4f8fc;--op-text-dim:#b4c0cf;
+  /* tiga level elevasi kaca: base / raised / overlay */
+  --op-glass-1:rgba(17,24,35,.72);--op-glass-2:rgba(23,32,46,.82);--op-glass-3:rgba(15,22,33,.94);
+  --op-blur-1:blur(12px) saturate(130%);--op-blur-2:blur(14px) saturate(140%);--op-blur-3:blur(16px) saturate(150%);
+  --op-edge:linear-gradient(135deg,rgba(255,255,255,.34),rgba(255,255,255,.07) 45%,rgba(63,182,255,.18));
+  --op-hi:inset 0 1px 0 rgba(255,255,255,.08);
+  --op-shadow-1:0 1px 2px rgba(0,0,0,.35),0 4px 14px rgba(0,0,0,.22);
+  --op-shadow-2:0 2px 4px rgba(0,0,0,.35),0 10px 28px rgba(0,0,0,.3);
+  --op-shadow-3:0 4px 8px rgba(0,0,0,.4),0 18px 48px rgba(0,0,0,.46);
+  --op-ring:0 0 0 2px var(--op-bg-solid,#0c121b),0 0 0 4px var(--op-accent);
+  --op-bg-solid:#0c121b;
+  --op-touch:40px;
+}
+
+/* ---------- panel kaca: border gradien 1px (tanpa mengubah layout) ---------- */
+#op-titlebar,#op-activity,#op-explorer,#op-tabs,#op-breadcrumbs,#op-statusbar,.op-context-menu,.op-palette-box,.op-toast,#op-tip,#op-terminal,body.op-has-explorer #op-workbench{
+  box-shadow:var(--op-hi),var(--op-shadow-1)}
+.op-palette-box{position:relative}
+#op-titlebar,#op-activity,#op-explorer,#op-tabs,#op-breadcrumbs{background:var(--op-glass-1);-webkit-backdrop-filter:var(--op-blur-1);backdrop-filter:var(--op-blur-1)}
+#op-titlebar{background:var(--op-glass-2);-webkit-backdrop-filter:var(--op-blur-2);backdrop-filter:var(--op-blur-2);box-shadow:var(--op-hi),var(--op-shadow-2)}
+#op-statusbar{background:linear-gradient(90deg,rgba(14,70,112,.92),rgba(40,40,110,.92));-webkit-backdrop-filter:var(--op-blur-1);backdrop-filter:var(--op-blur-1);border-top:1px solid rgba(255,255,255,.14)}
+body.op-has-explorer #op-workbench{background:var(--op-glass-1)}
+.op-context-menu,.op-palette-box{background:var(--op-glass-3);-webkit-backdrop-filter:var(--op-blur-3);backdrop-filter:var(--op-blur-3);border:1px solid transparent;border-radius:var(--op-r-lg);box-shadow:var(--op-hi),var(--op-shadow-3)}
+.op-toast{background:var(--op-glass-3);-webkit-backdrop-filter:var(--op-blur-3);backdrop-filter:var(--op-blur-3);border-radius:var(--op-r-md);box-shadow:var(--op-hi),var(--op-shadow-2)}
+/* border gradien via mask (overlay level) */
+.op-context-menu:before,.op-palette-box:before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:var(--op-edge);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.op-palette-box{overflow:hidden}
+/* kartu / form / tabel bawaan panel */
+body.onepay-id #app :is(.bg-neutral-700,.bg-neutral-800,.bg-neutral-900,.bg-gray-700,.bg-gray-800,.bg-gray-900){background:var(--op-glass-1)!important}
+body.onepay-id #app table{background:var(--op-glass-1);border-radius:var(--op-r-md)}
+body.onepay-id #app input,body.onepay-id #app textarea,body.onepay-id #app select{border-radius:var(--op-r-sm)!important;transition:border-color var(--op-dur) var(--op-ease),box-shadow var(--op-dur) var(--op-ease)}
+body.onepay-id #app :is(input,textarea,select):focus{border-color:var(--op-accent)!important;box-shadow:0 0 0 3px rgba(63,182,255,.2)!important}
+.op-muted,.op-tree-path,.op-term-state{color:var(--op-text-dim)}
+/* mode ringan: fallback solid, tanpa blur */
+body.op-lite *,body.op-lite *:before{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+body.op-lite :is(#op-titlebar,#op-activity,#op-explorer,#op-tabs,#op-breadcrumbs,.op-context-menu,.op-palette-box,.op-toast,#op-terminal,#op-tip){background:#111a28!important}
+body.op-lite #op-workbench{background:#0e1622!important}
+@media(prefers-reduced-transparency:reduce){:is(.op-context-menu,.op-palette-box,.op-toast,#op-terminal,#op-tip,#op-workbench){backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:#111a28!important}}
+
+/* ---------- sistem tombol ---------- */
+:is(.op-btn,.op-title-actions button,.op-mobile-menu,.op-file-actions button,.op-editor-toolbar button,.op-workbench-actions button,.op-terminal-head button,.op-bulk button,.op-upload,.op-row-menu,.op-context-menu button,.op-palette-list button,body.onepay-id #app button){
+  border-radius:var(--op-r-sm)!important;transition:transform var(--op-dur) var(--op-ease),box-shadow var(--op-dur) var(--op-ease),background-color var(--op-dur) var(--op-ease),border-color var(--op-dur) var(--op-ease),color var(--op-dur) var(--op-ease),opacity var(--op-dur) var(--op-ease);-webkit-tap-highlight-color:transparent}
+.op-ripple-host{position:relative;overflow:hidden}
+.op-ripple{position:absolute;border-radius:50%;background:currentColor;opacity:.22;transform:scale(0);pointer-events:none;animation:op-ripple 520ms var(--op-ease) forwards}
+@keyframes op-ripple{to{transform:scale(1);opacity:0}}
+/* varian */
+.op-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--op-sp-2);min-height:32px;padding:6px 14px;border:1px solid var(--op-border);background:rgba(255,255,255,.05);color:var(--op-text);font:inherit;cursor:pointer}
+.op-btn-primary,.op-editor-toolbar button.op-btn-primary{background:linear-gradient(180deg,#46bfff,#1d9be0);border-color:rgba(255,255,255,.25);color:#04121c;font-weight:600}
+.op-btn-secondary{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.18)}
+.op-btn-ghost{background:transparent;border-color:transparent;color:var(--op-text-dim)}
+.op-btn-danger,.op-context-menu button.danger:hover{background:rgba(255,90,110,.16);border-color:rgba(255,122,138,.55);color:#ffb3bd}
+.op-btn-icon{width:32px;min-width:32px;padding:0}
+/* hover hanya perangkat dengan pointer hover */
+@media(hover:hover){
+  :is(.op-btn,.op-title-actions button,.op-file-actions button,.op-editor-toolbar button,.op-workbench-actions button,.op-terminal-head button,.op-bulk button,.op-upload):not(:disabled):hover{transform:translateY(-1px);box-shadow:0 4px 14px var(--op-accent-glow)}
+  .op-btn-primary:not(:disabled):hover{filter:brightness(1.08)}
+}
+:is(.op-btn,.op-title-actions button,.op-file-actions button,.op-editor-toolbar button,.op-workbench-actions button,.op-terminal-head button,.op-bulk button,.op-upload,.op-row-menu,.op-nav-item):not(:disabled):active{transform:scale(.97);box-shadow:none}
+body.onepay-id :is(button,a,input,textarea,select,[tabindex]):focus-visible,#op-activity .op-nav-item:focus-visible{outline:none!important;box-shadow:var(--op-ring)!important}
+:is(.op-btn,.op-title-actions button,.op-file-actions button,.op-editor-toolbar button,.op-terminal-head button,.op-bulk button,.op-upload):disabled{opacity:.45;cursor:not-allowed;filter:saturate(.5)}
+/* loading: spinner kecil, lebar tetap (di-set via setBusy) */
+.op-busy{position:relative;color:transparent!important;pointer-events:none}
+.op-busy:after{content:"";position:absolute;inset:0;margin:auto;width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,255,255,.35);border-top-color:var(--op-text-strong);animation:op-spin .7s linear infinite}
+@keyframes op-spin{to{transform:rotate(360deg)}}
+/* tombol power terminal (warna sesuai spesifikasi) */
+.op-terminal-head button[data-p]{border-width:1px;font-weight:600}
+.op-terminal-head button[data-p=start]{color:#7df3ff;border-color:rgba(0,229,255,.5)}
+.op-terminal-head button[data-p=restart]{color:#d6a8ff;border-color:rgba(176,38,255,.55)}
+.op-terminal-head button[data-p=stop]{color:#8fb4ff;border-color:rgba(60,110,200,.7);background:rgba(28,79,156,.22)}
+.op-terminal-head button[data-p=kill]{color:#ff8cc4;border-color:rgba(255,46,154,.6)}
+@media(hover:hover){
+  .op-terminal-head button[data-p=start]:hover{box-shadow:0 0 14px rgba(0,229,255,.5)}
+  .op-terminal-head button[data-p=restart]:hover{box-shadow:0 0 14px rgba(176,38,255,.55)}
+  .op-terminal-head button[data-p=stop]:hover{box-shadow:0 0 14px rgba(60,110,200,.6)}
+  .op-terminal-head button[data-p=kill]:hover{box-shadow:0 0 14px rgba(255,46,154,.55)}
+}
+/* dot status pulse */
+.op-term-dot{transition:background var(--op-dur) var(--op-ease)}
+#op-terminal[data-status=running] .op-term-dot{background:var(--op-success);animation:op-pulse 1.8s ease-out infinite}
+#op-terminal[data-status=starting] .op-term-dot,#op-terminal[data-status=stopping] .op-term-dot{background:var(--op-warn);animation:op-pulse 1s ease-out infinite}
+@keyframes op-pulse{0%{box-shadow:0 0 0 0 currentColor}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+#op-terminal[data-status=running] .op-term-dot{color:rgba(79,224,160,.55)}#op-terminal[data-status=starting] .op-term-dot,#op-terminal[data-status=stopping] .op-term-dot{color:rgba(240,200,96,.55)}
+/* state aktif tombol title bar */
+body.op-term-open .op-title-actions [data-op=terminal],body.op-has-explorer:not(.op-side-off) .op-title-actions [data-op=explorer]{color:var(--op-accent);background:var(--op-hover);border-color:rgba(63,182,255,.4)}
+
+/* ---------- activity bar: indikator geser, tooltip glass ---------- */
+#op-nav-ind{position:fixed;z-index:1101;top:0;width:3px;border-radius:0 3px 3px 0;background:linear-gradient(180deg,var(--op-cyan),var(--op-violet-2));box-shadow:0 0 10px var(--op-accent-glow);pointer-events:none;transition:transform var(--op-dur-slow) var(--op-ease),height var(--op-dur-slow) var(--op-ease)}
+#op-nav-ind[hidden]{display:none}
+.op-nav-item{transition:color var(--op-dur) var(--op-ease),background-color var(--op-dur) var(--op-ease);border-left-color:transparent!important;position:relative}
+.op-nav-item.active{background:rgba(63,182,255,.09)}
+#op-tip{position:fixed;z-index:3600;transform:translateY(-50%);padding:6px 10px;border-radius:var(--op-r-sm);background:var(--op-glass-3);-webkit-backdrop-filter:var(--op-blur-3);backdrop-filter:var(--op-blur-3);border:1px solid rgba(255,255,255,.14);color:var(--op-text-strong);font:12px var(--op-font);pointer-events:none;white-space:nowrap;box-shadow:var(--op-shadow-2);animation:op-in var(--op-dur-menu) var(--op-ease)}
+#op-tip[hidden]{display:none}
+body.op-compact #op-tip{display:none}
+.op-nav-open #op-nav-ind{display:none}
+/* grup dipisah divider */
+.op-nav-bottom{border-top:1px solid var(--op-border)}
+
+/* ---------- menu, dropdown, palette ---------- */
+@keyframes op-fade{from{opacity:0}to{opacity:1}}
+body.op-compact .op-context-menu{animation:op-fade var(--op-dur-menu) var(--op-ease)}
+@keyframes op-in{from{opacity:0;transform:translateY(var(--op-tip-y,0)) scale(.96)}to{opacity:1;transform:translateY(var(--op-tip-y,0)) scale(1)}}
+#op-tip{--op-tip-y:-50%}
+.op-context-menu,.op-palette-box{animation:op-in var(--op-dur-menu) var(--op-ease);transform-origin:top left}
+.op-palette-box{transform-origin:top center}
+.op-context-menu button{display:flex;align-items:center;gap:var(--op-sp-2);border-radius:var(--op-r-sm)!important;margin:1px 0}
+.op-context-menu button:hover,.op-context-menu button:focus-visible{background:var(--op-hover)}
+.op-context-menu button.danger{color:var(--op-danger)}
+.op-palette-list{max-height:min(52vh,420px);overflow:auto;padding:var(--op-sp-1)}
+.op-palette-list button{display:flex;align-items:center;justify-content:space-between;gap:var(--op-sp-3)}
+.op-palette-list button.active,.op-palette-list button:hover{background:var(--op-hover);box-shadow:inset 2px 0 0 var(--op-accent)}
+.op-palette-list mark{background:transparent;color:var(--op-cyan);font-weight:700}
+.op-palette-list kbd{font:11px var(--op-mono);color:var(--op-text-dim);padding:2px 6px;border:1px solid var(--op-border);border-radius:6px;background:rgba(255,255,255,.04)}
+#op-palette{background:rgba(3,6,10,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.op-toast{animation:op-in var(--op-dur-menu) var(--op-ease)}
+
+/* drawer explorer di HP: slide + scrim blur */
+body.op-compact.op-side-off #op-explorer:not([hidden]){display:block!important;transform:translateX(-105%);visibility:hidden;transition:transform var(--op-dur-slow) var(--op-ease),visibility 0s linear var(--op-dur-slow)}
+body.op-compact #op-explorer{transition:transform var(--op-dur-slow) var(--op-ease),visibility 0s}
+body.op-compact.op-has-explorer #op-scrim{display:block;opacity:0;pointer-events:none;background:rgba(2,5,9,.5);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);transition:opacity var(--op-dur-slow) var(--op-ease)}
+body.op-compact.op-has-explorer:not(.op-side-off) #op-scrim{opacity:1;pointer-events:auto}
+/* area sentuh min 40px di compact */
+body.op-compact :is(.op-btn,.op-title-actions button,.op-mobile-menu,.op-file-actions button,.op-editor-toolbar button,.op-terminal-head button,.op-bulk button,.op-upload,.op-row-menu){min-height:var(--op-touch);min-width:var(--op-touch)}
+body.op-compact .op-title-actions button{padding-inline:var(--op-sp-3)}
+body.op-compact .op-terminal-head button{min-width:44px}
+
+/* ---------- skeleton glass ---------- */
+.op-skel-layer{position:absolute;inset:0;z-index:20;overflow:hidden;background:rgba(14,21,31,.97);opacity:1;transition:opacity var(--op-dur-slow) var(--op-ease);pointer-events:none}
+.op-skel-layer.out{opacity:0}
+.op-skel-fixed{position:fixed}
+.op-skel-explorer{z-index:1060;inset:var(--op-title-h) auto var(--op-status-h) var(--op-activity-w);width:var(--op-sidebar-w)}
+body.op-compact .op-skel-explorer{display:none}
+.op-skel-tabsbar{z-index:1010;inset:var(--op-title-h) 0 auto calc(var(--op-activity-w) + var(--op-sidebar-w));height:var(--op-tab-h)}
+.op-skel-stack{display:grid;gap:10px;padding:var(--op-sp-3)}
+.op-skel-row{display:flex;align-items:center;gap:var(--op-sp-2);min-height:30px}
+.op-skel-trow{display:grid;grid-template-columns:1fr 1.6fr .6fr;gap:var(--op-sp-4);align-items:center;min-height:36px}
+.op-skel-tabs{display:flex;height:100%}
+.op-skel-tab{width:130px;height:100%;border-right:1px solid var(--op-border);border-radius:0}
+.op-skel-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--op-sp-4);padding:var(--op-sp-4)}
+.op-skel-card{height:96px;border-radius:var(--op-r-md)}
+.op-skel-editor{padding:var(--op-sp-4) var(--op-sp-5)}
+.op-skel{position:relative;overflow:hidden;background:rgba(255,255,255,.06)}
+.op-skel:after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(100deg,transparent 20%,rgba(120,200,255,.14) 45%,rgba(255,255,255,.1) 50%,transparent 80%);animation:op-shimmer 1.6s ease-in-out infinite}
+.op-skel-line{height:10px;border-radius:var(--op-r-pill)}
+.op-skel-ico{width:16px;height:16px;border-radius:5px;flex-shrink:0}
+@keyframes op-shimmer{to{transform:translateX(100%)}}
+body.op-lite .op-skel:after{animation-duration:2.4s}
+@media(prefers-reduced-motion:reduce){
+  .op-skel:after{display:none}.op-ripple{display:none}.op-busy:after{animation:none;border-top-color:rgba(255,255,255,.35)}
+  .op-context-menu,.op-palette-box,#op-tip,.op-toast{animation:none!important}
+  #op-nav-ind,body.op-compact #op-explorer,#op-scrim{transition:none!important}
+}
+
+/* =====================================================================
+   v1.3.1 — ikon SVG (sprite lokal) + efek tombol lanjutan
+   ===================================================================== */
+:root{--op-spring:cubic-bezier(.34,1.56,.64,1)}
+.op-i{display:inline-block;vertical-align:middle;flex-shrink:0;overflow:visible;transition:transform var(--op-dur) var(--op-ease),color var(--op-dur) var(--op-ease),filter var(--op-dur) var(--op-ease)}
+/* warna aksen halus per jenis file */
+.op-ft-folder{color:#7fc4ff}.op-ft-js{color:#e7c547}.op-ft-ts{color:#5aa7ff}.op-ft-json{color:#e78c45}.op-ft-yml{color:#c397d8}.op-ft-md{color:#7aa6da}.op-ft-html{color:#ee8a63}.op-ft-css{color:#58b4ff}.op-ft-php{color:#a99af2}.op-ft-py{color:#5fd3a5}.op-ft-sh{color:#8fe08f}.op-ft-img{color:#70c0b1}.op-ft-zip{color:#e0a458}.op-ft-log{color:#9aa6b6}.op-ft-env{color:#d9d98c}.op-ft-txt{color:#b4c0cf}.op-ft-def{color:#9fb0c4}.op-ft-sel{color:var(--op-accent)}
+.op-file-row .op-file-icon{display:inline-flex;align-items:center;gap:4px;width:auto;min-width:36px;text-align:left}
+.op-file-icon .op-chev{color:var(--op-text-dim);transition:transform var(--op-dur) var(--op-ease)}
+.op-file-row:hover .op-file-icon .op-i:not(.op-chev){transform:scale(1.12)}
+.op-tab-ico{display:inline-flex;align-items:center}
+.op-dirty{width:9px;height:9px;border-radius:50%;background:var(--op-warn);box-shadow:0 0 8px rgba(240,200,96,.7);display:inline-block}
+.op-tab-close{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;padding:0!important;color:var(--op-text-dim);cursor:pointer;transition:background var(--op-dur) var(--op-ease),color var(--op-dur) var(--op-ease),transform var(--op-dur) var(--op-spring)}
+.op-tab-close:hover{background:rgba(255,122,138,.18);color:var(--op-danger);transform:rotate(90deg)}
+.op-crumb-sep{display:inline-flex;color:var(--op-text-dim);opacity:.7}
+.op-nav-item>span{display:flex;align-items:center;justify-content:center;line-height:0;transition:transform var(--op-dur) var(--op-spring)}
+.op-nav-item:hover>span{transform:translateY(-1px) scale(1.12)}
+.op-nav-item.active>span{filter:drop-shadow(0 0 6px var(--op-accent-glow))}
+.op-nav-item.active .op-i{stroke-width:1.9}
+.op-title-actions button,.op-mobile-menu{display:inline-flex;align-items:center;gap:6px}
+.op-file-actions button,.op-row-menu,.op-tab-close{line-height:0}
+.op-file-actions button,.op-ico-btn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0}
+.op-terminal-head button{display:inline-flex;align-items:center;gap:6px}
+.op-terminal-head button[data-a]{padding-inline:8px}
+.op-row-menu{align-items:center}
+
+/* ---------- efek tombol lanjutan ---------- */
+:is(.op-btn,.op-title-actions button,.op-mobile-menu,.op-file-actions button,.op-editor-toolbar button,.op-workbench-actions button,.op-terminal-head button,.op-bulk button,.op-upload,.op-row-menu,.op-nav-item){--mx:50%;--my:50%;position:relative;overflow:hidden;isolation:isolate}
+/* spotlight mengikuti kursor */
+:is(.op-btn,.op-title-actions button,.op-file-actions button,.op-editor-toolbar button,.op-workbench-actions button,.op-terminal-head button,.op-bulk button,.op-upload,.op-row-menu,.op-nav-item):before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;pointer-events:none;background:radial-gradient(90px circle at var(--mx) var(--my),rgba(120,205,255,.34),transparent 70%);transition:opacity var(--op-dur) var(--op-ease)}
+@media(hover:hover){
+  :is(.op-btn,.op-title-actions button,.op-file-actions button,.op-editor-toolbar button,.op-workbench-actions button,.op-terminal-head button,.op-bulk button,.op-upload,.op-row-menu,.op-nav-item):not(:disabled):hover:before{opacity:1}
+  /* kilau (shine) melintas di tombol primary */
+  .op-btn-primary:after,.op-editor-toolbar button.op-btn-primary:after{content:"";position:absolute;inset:0;z-index:-1;transform:translateX(-120%) skewX(-18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);pointer-events:none}
+  .op-btn-primary:not(:disabled):hover:after,.op-editor-toolbar button.op-btn-primary:not(:disabled):hover:after{transform:translateX(120%) skewX(-18deg);transition:transform 650ms var(--op-ease)}
+  /* gerak mikro ikon */
+  .op-spin-hover:not(:disabled):hover .op-i{transform:rotate(180deg)}
+  .op-title-actions button:hover .op-i,.op-terminal-head button[data-p]:hover .op-i{transform:scale(1.18)}
+  .op-terminal-head button[data-p=restart]:hover .op-i{transform:rotate(180deg)}
+  .op-file-actions button:not(.op-spin-hover):hover .op-i{transform:translateY(-1px) scale(1.15)}
+  .op-row-menu:hover .op-i{transform:scale(1.2)}
+  .op-title-actions button:hover,.op-file-actions button:hover{border-color:rgba(63,182,255,.45)}
+}
+/* tekan: pegas saat dilepas, bayangan masuk */
+:is(.op-btn,.op-title-actions button,.op-file-actions button,.op-editor-toolbar button,.op-workbench-actions button,.op-terminal-head button,.op-bulk button,.op-upload,.op-row-menu):not(:disabled){transition-timing-function:var(--op-spring)}
+:is(.op-btn,.op-title-actions button,.op-file-actions button,.op-editor-toolbar button,.op-workbench-actions button,.op-terminal-head button,.op-bulk button,.op-upload,.op-row-menu):not(:disabled):active{transform:scale(.94);box-shadow:inset 0 2px 6px rgba(0,0,0,.4);transition-duration:60ms}
+.op-btn-primary:not(:disabled):active{filter:brightness(.92)}
+/* ring fokus berdenyut sekali */
+body.onepay-id :is(button,a,input,textarea,select,[tabindex]):focus-visible{animation:op-ring .45s var(--op-ease)}
+@keyframes op-ring{from{box-shadow:0 0 0 2px var(--op-bg-solid),0 0 0 9px rgba(63,182,255,0)}to{box-shadow:var(--op-ring)}}
+/* tombol power: glow berdenyut halus saat aktif */
+#op-terminal[data-status=running] .op-terminal-head button[data-p=stop],#op-terminal[data-status=offline] .op-terminal-head button[data-p=start]{animation:op-breathe 2.4s ease-in-out infinite}
+@keyframes op-breathe{0%,100%{box-shadow:0 0 0 rgba(0,229,255,0)}50%{box-shadow:0 0 12px rgba(63,182,255,.45)}}
+@media(prefers-reduced-motion:reduce){
+  .op-i,.op-nav-item>span,.op-tab-close{transition:none!important}
+  .op-spin-hover:hover .op-i,.op-tab-close:hover,.op-nav-item:hover>span{transform:none!important}
+  body.onepay-id :is(button,a,input,textarea,select,[tabindex]):focus-visible{animation:none}
+  #op-terminal .op-terminal-head button{animation:none!important}
+  .op-btn-primary:after{display:none}
+}
+
+.op-chev-sp{display:inline-block;width:14px;flex-shrink:0}
+body.op-has-explorer .op-title-actions .op-title-explorer{display:inline-flex}
+.op-title-actions .op-title-explorer{display:none}
+.op-mobile-menu{display:none}
+@media(max-width:767px){.op-mobile-menu{display:inline-flex}}
+
+/* ===== v1.3.3: responsif PC + Android, tanpa tab bar bawaan & tanpa geser horizontal ===== */
+html{overflow-x:hidden;max-width:100%}
+body.onepay-id{overflow-x:hidden;max-width:100%}
+body.onepay-id #app{max-width:100%;overflow-x:hidden;overflow-x:clip}
+/* tab bar bawaan (Console/Files/.../Settings) diganti nav samping; hanya disembunyikan, tetap ada di DOM */
+body.onepay-id #app .op-native-subnav{display:none!important}
+/* navbar bawaan: scrollbar disembunyikan supaya tidak terlihat ada geseran */
+body.onepay-id #app .op-native-nav{scrollbar-width:none;-ms-overflow-style:none}
+body.onepay-id #app .op-native-nav::-webkit-scrollbar{display:none}
+body.onepay-id #app :is(img,video,canvas,svg){max-width:100%}
+body.onepay-id #app :is(table,pre){max-width:100%}
+body.onepay-id #app pre{overflow-x:auto}
+@supports(height:100dvh){body.onepay-id #app{min-height:calc(100dvh - var(--op-title-h) - var(--op-status-h))}}
+/* HP / layar sempit: konten penuh lebar, tanpa margin kiri */
+@media(max-width:767px){
+  body.onepay-id #app,body.onepay-id.op-has-explorer #app{margin-left:0!important;width:100%!important;max-width:100%}
+  .op-title-center{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+}
+/* tablet / Android landscape / desktop sempit */
+@media(min-width:768px) and (max-width:1100px){body.onepay-id #app{padding:16px}}
+/* layar lebar: isi tidak melebar tanpa batas */
+@media(min-width:1600px){body.onepay-id #app>*{margin-left:auto;margin-right:auto}}
+
+/* ===== v1.4.0: Neo-Brutalism — biru + hijau, nuansa kertas =====
+   Menggantikan tema "candy" v1.3.4. Admin (AdminLTE) tidak ikut: admin.css tetap gelap. */
+:root{
+  --nb-ink:#14110f;--nb-paper:#f3ecd9;--nb-paper-2:#fbf6e6;--nb-paper-3:#e6dcc0;
+  --nb-blue:#2f6bff;--nb-blue-2:#1f46c8;--nb-sky:#cfe0ff;
+  --nb-green:#2fd27a;--nb-green-2:#12915a;--nb-mint:#c9f6dc;--nb-red:#ff5d5d;
+  --nb-line:3px;
+  --nb-sh-sm:2px 2px 0 var(--nb-ink);--nb-sh:4px 4px 0 var(--nb-ink);--nb-sh-lg:7px 7px 0 var(--nb-ink);
+  --op-accent:var(--nb-blue);--op-accent-2:var(--nb-blue-2);--op-accent-glow:transparent;
+  --op-text:var(--nb-ink);--op-text-strong:#000;--op-muted:#4a4339;--op-text-dim:#4a4339;
+  --op-border:var(--nb-ink);--op-hover:rgba(47,210,122,.28);
+  --op-glass-1:var(--op-s2);--op-glass-2:var(--nb-paper-2);--op-glass-3:var(--nb-paper-2);--op-bg-solid:var(--nb-paper);
+  --op-r-sm:4px;--op-r-md:6px;--op-r-lg:8px;--op-radius:4px;
+  --op-shadow-1:var(--nb-sh-sm);--op-shadow-2:var(--nb-sh);--op-shadow-3:var(--nb-sh-lg);--op-hi:0 0 0 transparent;
+  --op-blur:none;--op-blur-1:none;--op-blur-2:none;--op-blur-3:none;
+  --op-font:"Space Grotesk","Archivo","Segoe UI",system-ui,-apple-system,sans-serif;
+  --op-mono:"JetBrains Mono","Cascadia Code",Consolas,monospace;
+  --op-s0:#101a3a;--op-s1:#2549c8;--op-s2:#22409e;--op-s3:#0f7a52;
+  color-scheme:light;
+}
+/* ---- latar: gambar bg.webp (tanpa lapisan kertas) ---- */
+body.onepay-id{background:#b9a9b2 url('/themes/onepay-id/bg.webp') center/cover fixed no-repeat!important;color:var(--nb-ink)!important;font-family:var(--op-font)!important}
+body.onepay-id:before{display:none}
+body.onepay-id #app{background:transparent!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+body.onepay-id #app :is(h1,h2,h3){font-weight:800;letter-spacing:-.01em}
+/* judul/teks yang menempel langsung di kertas (bukan di dalam kartu) jadi tinta */
+body.onepay-id #app [data-op-ink]{color:var(--nb-ink)!important;text-shadow:0 0 6px rgba(251,246,230,.95),0 0 2px rgba(251,246,230,.95)}
+body.onepay-id #app [data-op-ink] a{color:var(--nb-blue-2)}
+/* ---- kartu bawaan panel (ditandai oleh pages.js) ---- */
+body.onepay-id :is(#app,#modal-portal) [data-op-surf="0"]{background-color:var(--op-s0)!important}
+body.onepay-id :is(#app,#modal-portal) [data-op-surf="1"]{background-color:var(--op-s1)!important}
+body.onepay-id :is(#app,#modal-portal) [data-op-surf="2"]{background-color:var(--op-s2)!important}
+body.onepay-id :is(#app,#modal-portal) [data-op-surf="3"]{background-color:var(--op-s3)!important}
+body.onepay-id :is(#app,#modal-portal) [data-op-card]{border:var(--nb-line) solid var(--nb-ink)!important;border-radius:var(--op-r-md)!important;box-shadow:5px 5px 0 var(--nb-ink)!important;transition:transform .18s var(--op-spring),box-shadow .18s var(--op-ease),filter .18s var(--op-ease)}
+@media(hover:hover){body.onepay-id #app a[data-op-card]:hover,body.onepay-id #app [data-op-card][role=button]:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--nb-ink)!important;filter:brightness(1.08)}}
+body.onepay-id #app .op-native-nav{background-color:var(--op-s1)!important;border-bottom:var(--nb-line) solid var(--nb-ink)!important;box-shadow:0 3px 0 var(--nb-green-2)!important}
+/* ---- input ---- */
+body.onepay-id :is(#app,#modal-portal) :is(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=submit]):not([type=button]),textarea,select){background:var(--nb-paper-2)!important;color:var(--nb-ink)!important;border:var(--nb-line) solid var(--nb-ink)!important;border-radius:var(--op-r-sm)!important;box-shadow:var(--nb-sh-sm)!important;font-weight:600;transition:box-shadow .16s var(--op-ease),transform .16s var(--op-ease)}
+body.onepay-id :is(#app,#modal-portal) :is(input,textarea,select):focus{outline:0!important;box-shadow:4px 4px 0 var(--nb-green)!important;transform:translate(-1px,-1px)}
+body.onepay-id :is(#app,#modal-portal) ::placeholder{color:#7a7062}
+/* ---- tombol bawaan panel ---- */
+body.onepay-id :is(#app,#modal-portal) :is(button,input[type=submit],input[type=button],[role=button]):not(#logo + div > *){border:var(--nb-line) solid var(--nb-ink)!important;border-radius:var(--op-r-sm)!important;box-shadow:var(--nb-sh-sm);font-weight:800;letter-spacing:.02em}
+
+/* ---- efek tekan SEMUA tombol: halus + memantul saat dilepas ---- */
+body.onepay-id :is(button,[role=button],input[type=submit],input[type=button],.op-btn,.op-nav-item,.op-tab,.op-file-row,.op-sup-fab,.op-sup-item,.op-palette-list button,.op-context-menu button){transition:transform .2s var(--op-spring),box-shadow .2s var(--op-ease),background-color .18s var(--op-ease),color .18s var(--op-ease),filter .18s var(--op-ease);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+@media(hover:hover){body.onepay-id :is(#app,#modal-portal) :is(button,input[type=submit],input[type=button],[role=button]):not(:disabled):not(#logo + div > *):hover,body.onepay-id :is(.op-btn,.op-sup-fab,.op-sup-item,#op-titlebar button,.op-editor-toolbar button,.op-terminal-head button,.op-bulk button):not(:disabled):hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--nb-ink)}}
+body.onepay-id :is(#app,#modal-portal) :is(button,input[type=submit],input[type=button],[role=button]):not(:disabled):active,body.onepay-id :is(.op-btn,.op-sup-fab,.op-sup-item,#op-titlebar button,#op-breadcrumbs button,.op-editor-toolbar button,.op-terminal-head button,.op-bulk button,.op-file-actions button,.op-upload):not(:disabled):active{transform:translate(3px,3px) scale(.98)!important;box-shadow:0 0 0 var(--nb-ink)!important;filter:brightness(.96);transition-duration:.06s}
+body.onepay-id :is(.op-nav-item,.op-tab,.op-file-row,.op-palette-list button,.op-context-menu button,.op-tab-close):active{transform:scale(.96)!important;filter:brightness(.95);transition-duration:.06s}
+@media(prefers-reduced-motion:reduce){body.onepay-id *{transition-duration:.01ms!important;animation-duration:.01ms!important}body.onepay-id :is(button,[role=button]):active{transform:none!important}}
+
+/* ---- chrome: titlebar / activity / explorer / tabs / status ---- */
+body.onepay-id #op-titlebar{--op-text:#fff;--op-muted:#eaf1ff;--op-hover:rgba(255,255,255,.22);background:var(--nb-blue)!important;color:#fff;border-bottom:var(--nb-line) solid var(--nb-ink)!important;box-shadow:0 3px 0 var(--nb-ink)}
+.op-brand strong{color:#fff;font-weight:800;letter-spacing:.02em}
+.op-brand img{border:2px solid var(--nb-ink);background:var(--nb-paper-2)}
+body.onepay-id .op-title-center{color:#fff!important;font-weight:700}
+body.onepay-id :is(.op-title-actions button,.op-mobile-menu){color:#fff;border:2px solid transparent;border-radius:var(--op-r-sm)}
+body.onepay-id :is(.op-title-actions button,.op-mobile-menu):hover{background:var(--nb-paper-2);color:var(--nb-ink);border-color:var(--nb-ink)}
+body.onepay-id #op-activity{background:var(--nb-paper-3)!important;border-right:var(--nb-line) solid var(--nb-ink)!important}
+body.onepay-id .op-nav-item{color:var(--nb-ink)!important;font-weight:700;border-left:5px solid transparent}
+body.onepay-id .op-nav-item:hover{background:var(--nb-mint)}
+body.onepay-id .op-nav-item.active{background:var(--nb-green);border-left-color:var(--nb-ink);color:var(--nb-ink)!important}
+body.onepay-id #op-explorer{background:var(--nb-paper-2)!important;border-right:var(--nb-line) solid var(--nb-ink)!important}
+body.onepay-id .op-file-row{color:var(--nb-ink)}
+body.onepay-id .op-file-row:hover{background:var(--nb-mint)}
+body.onepay-id .op-file-row.active{background:var(--nb-green);border-left-color:var(--nb-ink)}
+body.onepay-id .op-file-row.selected{background:var(--nb-sky)}
+body.onepay-id .op-file-row.cwd:not(.active){background:var(--nb-paper-3)}
+.op-ft-folder{color:var(--nb-blue-2)}.op-ft-js{color:#b45309}.op-ft-ts,.op-ft-css{color:#1d4ed8}.op-ft-json{color:#c2410c}.op-ft-yml{color:#6d28d9}.op-ft-html{color:#c2410c}.op-ft-md{color:#0f766e}.op-ft-php{color:#6d28d9}.op-ft-py,.op-ft-sh{color:#15803d}.op-ft-zip{color:#a16207}.op-ft-env{color:#4d7c0f}.op-ft-img{color:#0e7490}.op-ft-txt,.op-ft-log,.op-ft-def{color:#4a4339}
+body.onepay-id #op-tabs{background:var(--nb-sky)!important;border-bottom:var(--nb-line) solid var(--nb-ink)!important}
+body.onepay-id .op-tab{color:var(--nb-ink);background:transparent;border-right:2px solid var(--nb-ink);font-weight:700}
+body.onepay-id .op-tab.active{background:var(--nb-green);color:var(--nb-ink);border-top:0;box-shadow:inset 0 -4px 0 var(--nb-ink)}
+body.onepay-id #op-breadcrumbs{background:var(--nb-paper-2)!important;border-bottom:2px solid var(--nb-ink)!important}
+body.onepay-id #op-breadcrumbs button{color:var(--nb-ink);font-weight:700}
+body.onepay-id #op-workbench{background:var(--nb-paper-2)!important}
+body.onepay-id.op-lite :is(#op-titlebar){background:var(--nb-blue)!important}
+body.onepay-id.op-lite :is(#op-activity,#op-tabs,#op-explorer,#op-breadcrumbs){background:var(--nb-paper-2)!important}
+body.onepay-id.op-lite #op-workbench{background:var(--nb-paper-2)!important}
+body.onepay-id #op-statusbar{--op-text:var(--nb-ink);--op-muted:var(--nb-ink);background:var(--nb-green)!important;color:var(--nb-ink);font-weight:700;border-top:var(--nb-line) solid var(--nb-ink)!important}
+body.onepay-id .op-editor-toolbar{background:var(--nb-paper-3);border-bottom:2px solid var(--nb-ink)}
+body.onepay-id .op-active-file{color:var(--nb-ink);font-weight:700}
+body.onepay-id .op-bulk{background:var(--nb-paper-3);border-top:var(--nb-line) solid var(--nb-ink)}
+body.onepay-id .op-skel-layer,.op-skel-layer{background:var(--nb-paper)}
+.op-skel{background:rgba(20,17,15,.09)}
+/* ---- tombol tema ---- */
+body.onepay-id :is(.op-editor-toolbar button,.op-workbench-actions button,.op-terminal-head button,.op-bulk button,.op-file-actions button,.op-upload){background:var(--nb-paper-2);color:var(--nb-ink);border:2px solid var(--nb-ink);border-radius:var(--op-r-sm);box-shadow:var(--nb-sh-sm);font-weight:700}
+body.onepay-id :is(.op-editor-toolbar button,.op-workbench-actions button,.op-terminal-head button,.op-bulk button,.op-file-actions button,.op-upload):hover{background:var(--nb-mint);border-color:var(--nb-ink)}
+body.onepay-id .op-btn{background:var(--nb-paper-2);color:var(--nb-ink);border:var(--nb-line) solid var(--nb-ink);border-radius:var(--op-r-sm);font-weight:800;box-shadow:var(--nb-sh-sm)}
+body.onepay-id :is(.op-btn-primary,.op-editor-toolbar button.op-btn-primary){background:var(--nb-blue);color:#fff;border-color:var(--nb-ink)}
+body.onepay-id :is(.op-btn-primary,.op-editor-toolbar button.op-btn-primary):after{display:none}
+body.onepay-id .op-btn-secondary{background:var(--nb-green)}
+body.onepay-id .op-btn-ghost{background:transparent;box-shadow:none;border-color:transparent}
+body.onepay-id .op-btn-danger{background:#ffd0d0;color:#9f1239}
+/* ---- menu / palette / toast / tooltip ---- */
+body.onepay-id :is(.op-context-menu,.op-palette-box,.op-toast,#op-tip){background:var(--nb-paper-2)!important;color:var(--nb-ink);border:var(--nb-line) solid var(--nb-ink)!important;border-radius:var(--op-r-md);box-shadow:var(--nb-sh-lg)}
+.op-context-menu:before,.op-palette-box:before{display:none}
+body.onepay-id .op-toast{border-left:8px solid var(--nb-blue)!important}
+body.onepay-id .op-toast-success{border-left-color:var(--nb-green-2)!important}
+body.onepay-id .op-toast-error{border-left-color:var(--nb-red)!important}
+#op-palette{background:rgba(20,17,15,.45)}
+body.onepay-id .op-palette-box input{color:var(--nb-ink);font-weight:700}
+body.onepay-id .op-palette-list mark{background:var(--nb-mint);color:var(--nb-blue-2)}
+body.onepay-id :is(.op-palette-list button.active,.op-palette-list button:hover,.op-context-menu button:hover,.op-context-menu button:focus-visible){background:var(--nb-green);box-shadow:none}
+body.onepay-id .op-context-menu button.danger{color:#b42318}
+body.onepay-id .op-context-menu button.danger:hover{background:#ffd0d0;color:#9f1239}
+body.onepay-id .op-error{color:#b42318}
+/* ---- terminal workbench: blok tinta supaya log tetap terbaca ---- */
+body.onepay-id #op-terminal{--op-text:#f4f7ff;--op-muted:#cdd7ee;--op-text-dim:#cdd7ee;--op-border:rgba(243,236,217,.28);background:var(--nb-ink)!important;color:#f4f7ff;border-top:var(--nb-line) solid var(--nb-green)!important}
+body.onepay-id #op-terminal .op-terminal-output{color:#d9f7e6}
+body.onepay-id #op-terminal .op-terminal-head button{color:var(--nb-ink)}
+body.onepay-id #op-terminal .op-terminal-head button[data-p=start]{background:var(--nb-green)}
+body.onepay-id #op-terminal .op-terminal-head button[data-p=restart]{background:var(--nb-sky)}
+body.onepay-id #op-terminal .op-terminal-head button[data-p=stop]{background:#7fa6ff}
+body.onepay-id #op-terminal .op-terminal-head button[data-p=kill]{background:#ff9a9a}
+/* ---- editor kode: kertas + token biru/hijau ---- */
+.op-code{position:relative;flex:1;min-height:160px;overflow:hidden;background:#fffdf4}
+body.op-compact .op-code{min-height:80px}
+/* tumpuk: pre berwarna di belakang (z 0), textarea transparan di depan (z 1) yang menerima ketikan */
+.op-code>.op-hl,.op-code>.op-text-editor{position:absolute;inset:0;width:100%;height:100%;margin:0;flex:none}
+.op-code>.op-hl{z-index:0}
+.op-code>.op-text-editor{z-index:1;background:transparent!important;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.op-hl{pointer-events:none;overflow:hidden;white-space:pre;border:0;background:transparent;-webkit-text-size-adjust:100%;text-size-adjust:100%;user-select:none;-webkit-user-select:none}
+.op-hl code{display:block;font:inherit;white-space:pre;will-change:transform;pointer-events:none}
+.op-code>.op-text-editor{color:var(--nb-ink)!important;caret-color:var(--nb-blue-2)}
+.op-code.op-hl-on>.op-text-editor{color:transparent!important;-webkit-text-fill-color:transparent}
+.op-code>.op-text-editor::selection{background:rgba(47,210,122,.45)}
+.op-hl{color:var(--nb-ink)}
+.op-hl .t-cmt{color:#8a7f6c;font-style:italic}
+.op-hl .t-str{color:#0f7a52}
+.op-hl .t-num{color:#b45309}
+.op-hl .t-lit{color:#c2410c}
+.op-hl .t-kw{color:#1f46c8}
+.op-hl .t-fn{color:#0b6fa4}
+.op-hl .t-type{color:#6d28d9}
+.op-hl .t-op{color:#5b5346}
+.op-hl .t-prop{color:#b45309}
+.op-hl .t-variable{color:#9a3412}
+.op-hl .t-tag{color:#1f46c8}
+.op-hl .t-attr{color:#0f7a52}
+.op-hl .t-at{color:#6d28d9}
+.op-hl .t-head{color:#1f46c8;font-weight:600}
+
+/* ---- tombol Support (di luar halaman server) ---- */
+#op-support{position:fixed;left:0;top:0;z-index:1300;font-family:var(--op-font)}
+#op-support[hidden]{display:none}
+.op-sup-fab{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;background:var(--nb-green);color:var(--nb-ink);border:var(--nb-line) solid var(--nb-ink);border-radius:var(--op-r-sm);box-shadow:var(--nb-sh);font:800 14px var(--op-font);text-transform:uppercase;letter-spacing:.05em;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}
+body.onepay-id #op-support.dragging .op-sup-fab.op-sup-fab.op-sup-fab{transform:scale(1.07) rotate(-2deg)!important;box-shadow:8px 8px 0 var(--nb-ink)!important;cursor:grabbing;transition-duration:.12s}
+.op-sup-menu{position:absolute;right:0;bottom:calc(100% + 10px);display:flex;flex-direction:column;gap:10px;transform-origin:bottom right;animation:op-sup-pop .24s var(--op-spring)}
+#op-support.below .op-sup-menu{bottom:auto;top:calc(100% + 10px);transform-origin:top right}
+#op-support.left .op-sup-menu{right:auto;left:0}
+.op-sup-menu[hidden]{display:none}
+.op-sup-item{display:flex;align-items:center;gap:12px;padding:10px 14px;min-width:250px;max-width:calc(100vw - 28px);background:var(--nb-paper-2);color:var(--nb-ink);text-decoration:none;border:var(--nb-line) solid var(--nb-ink);border-radius:var(--op-r-md);box-shadow:var(--nb-sh)}
+.op-sup-item b{display:block;font-weight:800}
+.op-sup-item small{display:block;font-size:12px;color:var(--op-muted)}
+.op-sup-ic{display:grid;place-items:center;width:38px;height:38px;flex:none;border:var(--nb-line) solid var(--nb-ink);border-radius:var(--op-r-sm)}
+.op-sup-wa .op-sup-ic{background:var(--nb-green)}
+.op-sup-ch .op-sup-ic{background:var(--nb-blue);color:#fff}
+@keyframes op-sup-pop{from{opacity:0;transform:translateY(10px) scale(.94)}to{opacity:1;transform:none}}
+
+/* ---- halaman login ---- */
+body.onepay-id.op-auth-page #app h2{display:table;margin:0 auto 14px;padding:4px 16px;font-size:clamp(1.4rem,5vw,2rem);text-align:center;background:var(--nb-green);color:var(--nb-ink)!important;border:var(--nb-line) solid var(--nb-ink);box-shadow:var(--nb-sh);transform:rotate(-1.2deg)}
+body.onepay-id.op-auth-page #app form>div{background:var(--nb-paper-2)!important;border:4px solid var(--nb-ink)!important;border-radius:10px!important;box-shadow:7px 7px 0 var(--nb-ink),14px 14px 0 var(--nb-blue)!important}
+body.onepay-id.op-auth-page #app form>div>div:first-child{padding:0 1.5rem}
+body.onepay-id .op-login-logo{width:min(70%,12rem)!important;aspect-ratio:1;object-fit:cover;background:#fff;border:4px solid var(--nb-ink);border-radius:12px;box-shadow:6px 6px 0 var(--nb-green)}
+body.onepay-id.op-auth-page #app label{font-weight:800;text-transform:uppercase;font-size:.72rem;letter-spacing:.07em;color:var(--nb-ink)!important}
+body.onepay-id.op-auth-page #app button[type=submit]{background:var(--nb-blue)!important;color:#fff!important;font-size:1rem;box-shadow:var(--nb-sh)}
+body.onepay-id.op-auth-page #app form a{color:var(--nb-ink)!important;text-decoration:underline;font-weight:700}
+
+/* ===== v1.3.5: navbar bawaan muat di layar HP (sumber geser kiri-kanan) =====
+   NavigationBar.tsx: logo (#logo, flex-1) + 5 item kanan, masing-masing px-6 (~70px) => ±350px + logo, melebihi layar 360px. */
+@media(max-width:767px){
+  body.onepay-id #app #logo{min-width:0}
+  body.onepay-id #app #logo a{display:block;font-size:1.1rem!important;padding-left:.75rem!important;padding-right:.5rem!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  body.onepay-id #app #logo + div > :is(a,button,.navigation-link){padding-left:.7rem!important;padding-right:.7rem!important}
+}
